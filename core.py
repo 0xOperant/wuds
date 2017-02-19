@@ -144,7 +144,8 @@ def packet_handler(pkt):
 with pymysql.connect(host='HOST', 
                      user='USER', 
                      ssl='CA', 
-                     password='PASSWORD') as conn:
+                     password='PASSWORD'
+                     db='DB') as conn:
     # Use Write-Ahead-Logging mode, speeds performance some, eliminates read-locks,
     # and provides the benefits w/o going to mysql or something larger quite yet ;)
     #   - des - jul25 2016
