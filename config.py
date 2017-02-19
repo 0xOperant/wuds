@@ -29,10 +29,10 @@ RSSI_THRESHOLD = -50
 ALERT_THRESHOLD = 120
 
 # (STR) Path to the database
-LOG_FILE = pymysql.connect(host='host', 
-                           user='user', 
-                           ssl={'ca':'/path/to/ca/rds-combined-ca-bundle.pem'}, 
-                           password='password')
+LOG_FILE = (host='host', 
+            user='user', 
+            ssl={'ca':'/path/to/ca/rds-combined-ca-bundle.pem'}, 
+            password='password')
 
 # (INT) Determines which probes are stored in the database
 # 0 = all probes
