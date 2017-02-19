@@ -12,7 +12,6 @@
 *  `sudo apt-get install iw python-pcapy screen vim git python-mysqldb`
 *  `git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/wuds.git`
 
-###Require SSL to RDS *(replace `encrypted_user` with mysql username)
+###Require SSL to RDS
 *  On the Pi: `wget https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem`
-*  In mysql: `GRANT USAGE ON *.* TO 'encrypted_user'@'%' REQUIRE SSL;`
-*  
+*  In mysql: `GRANT USAGE ON *.* TO 'encrypted_user'@'%' REQUIRE SSL;` *(replace `encrypted_user` with mysql username)*
