@@ -9,7 +9,8 @@
 *  `sudo apt-get dist-upgrade`
 
 ###Install dependencies:
-*  `sudo apt-get install iw python-pcapy screen vim git python-mysqldb`
+*  `sudo apt-get install iw python-pcapy screen vim git python-pip`
+*  `sudo pip install PyMySQL`
 *  `git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/wuds.git`
 
 ###Require SSL to RDS
