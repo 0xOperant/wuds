@@ -31,7 +31,7 @@ ALERT_THRESHOLD = 120
 # (STR) RDS MySQL database
 HOST = 'host' 
 USER = 'user' 
-CA = '/path/to/ca/rds-combined-ca-bundle.pem'
+CA = '{'ca':'/home/pi/wuds/rds-combined-ca-bundle.pem'}'
 PASSWORD = 'password'
 
 # (INT) Determines which probes are stored in the database
