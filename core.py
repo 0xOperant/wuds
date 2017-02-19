@@ -2,7 +2,7 @@ from contextlib import closing
 from datetime import datetime, timedelta
 import json
 import pcapy
-import sqlite3
+import MySQLdb
 import struct
 import sys
 import traceback
