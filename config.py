@@ -33,6 +33,7 @@ HOST = 'host'
 USER = 'user' 
 CA = '{'ca':'/home/pi/wuds/rds-combined-ca-bundle.pem'}'
 PASSWORD = 'password'
+DB = 'db'
 
 # (INT) Determines which probes are stored in the database
 # 0 = all probes
