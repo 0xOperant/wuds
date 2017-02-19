@@ -28,11 +28,11 @@ RSSI_THRESHOLD = -50
 # (INT) Number of seconds between alerts for persistent foreign probes
 ALERT_THRESHOLD = 120
 
-# (STR) Path to the database
-LOG_FILE = (host='host', 
-            user='user', 
-            ssl={'ca':'/path/to/ca/rds-combined-ca-bundle.pem'}, 
-            password='password')
+# (STR) RDS MySQL database
+HOST = 'host' 
+USER = 'user' 
+CA = '/path/to/ca/rds-combined-ca-bundle.pem'
+PASSWORD = 'password'
 
 # (INT) Determines which probes are stored in the database
 # 0 = all probes
