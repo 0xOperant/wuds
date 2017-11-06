@@ -27,3 +27,10 @@ def alert_pushover(**kwargs):
     payload = {'token': PUSHOVER_API_KEY, 'user': PUSHOVER_USER_KEY, 'message': msg}
     payload = urllib.urlencode(payload)
     resp = urllib2.urlopen(url, data=payload)
+
+import json
+
+def alert_slack(**kwargs):
+    msg = '{"text": "Proximity alert! A foreign device (%s , %s , %sdbm, %s) has been detected nearby."}' % (kwargs['bssid'], kwargs['oui'], kwargs['rssi'], kwargs['essid'])
+    url = WEBHOOK_URL
+    resp = urllib2.urlopen(url, data=msg)
