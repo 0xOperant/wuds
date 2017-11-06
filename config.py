@@ -4,7 +4,7 @@
 #=========
 
 # (STR) WLAN interface in monitor mode
-IFACE = 'mon0'
+IFACE = ''
 
 # (LIST) List of MAC addresses expected within the premises
 MAC_LIST = [
@@ -75,3 +75,10 @@ SMS_EMAIL = ''
 # (STR) API and User keys from pushover.net
 PUSHOVER_API_KEY = ''
 PUSHOVER_USER_KEY = ''
+
+#=======================
+# ALERT_SLACK CONFIG
+#=======================
+
+# (STR) Slack Webhook URL
+WEBHOOK_URL = ''
