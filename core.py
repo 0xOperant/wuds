@@ -64,23 +64,18 @@ def resolve_oui(mac):
         # retrieve mac vendor from oui lookup api
         else:
             try:
-                # this creates an ssl context that doesn't validate the ssl cert, so if macvendorlookup.com's
-                # cert expires (as it did May 2016), it still parses the results - des 06-2016
-                sadfacecontext = ssl.create_default_context()
-                sadfacecontext.check_hostname = False
-                sadfacecontext.verify_mode = ssl.CERT_NONE
-                resp = urllib2.urlopen('https://www.macvendorlookup.com/api/v2/%s' % mac,context=sadfacecontext)
+                resp = urllib2.urlopen('http://api.macvendors.com/%s' % mac)
                 if resp.code == 204:
                     ouis[mac] = 'Unknown'
                 elif resp.code == 200:
-                    jsonobj = json.load(resp)
-                    ouis[mac] = jsonobj[0]['company']
+                    #jsonobj = json.load(resp)
+                    ouis[mac] = resp.read()
                 else:
                     raise Exception('Invalid response code: %d' % (resp.code))
                 log_message(0, 'OUI resolved. [%s => %s]' % (mac, ouis[mac]))
             except Exception as e:
                 log_message(1, 'OUI resolution failed. [%s => %s]' % (mac, str(e)))
-                # return, but don't store the value
+                #return, but don't store the value
                 return 'Error'
     return ouis[mac]
 
