@@ -21,13 +21,13 @@ More to come:
 # sqlite3 - interact with the database
 # screen  - (optional) daemonize WUDS
 sudo apt install git iw python-pcapy sqlite3 screen
-# lauch a screen session
-screen
 # install WUDS
 git clone https://github.com/belldavidr/WUDS.git
 cd wuds
 # edit the config file
 vim config.py
+# lauch a screen session
+screen
 # execute the included run script
 ./run.sh
 # Ctrl+A, D detaches from the screen session
