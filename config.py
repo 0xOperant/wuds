@@ -31,7 +31,7 @@ ALERT_THRESHOLD = 120
 # (STR) RDS MySQL database
 HOST = 'host' 
 USER = 'user' 
-CA = {'ca':'/home/pi/WUDS/rds-combined-ca-bundle.pem'}
+CA = {'ca':'/home/pi/WUDS/rds-ca-2015-root.pem'}
 PASSWORD = 'password'
 DB = 'db'
 
