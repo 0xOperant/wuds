@@ -24,6 +24,8 @@ sudo apt install git iw python-pcapy sqlite3 screen vim
 # install WUDS
 git clone https://github.com/belldavidr/WUDS.git
 cd wuds
+# download RDS SSL Certificate bundle
+wget https://s3.amazonaws.com/rds-downloads/rds-ca-2015-root.pem
 # edit the config file
 vim config.py
 # lauch a screen session
