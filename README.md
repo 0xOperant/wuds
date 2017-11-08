@@ -1,5 +1,4 @@
-# WUDS - Wifi User Detection System   
-**now with RDS back-end and Slack Alerts
+# WUDS - Wifi User Detection System
 
 This is my take on Tim Tomes' original WUDS project, from the original repo: [BitBucket.com](https://bitbucket.org/LaNMaSteR53/wuds)   
 
@@ -21,11 +20,11 @@ More to come:
 # pycapy  - access full 802.11 frames
 # sqlite3 - interact with the database
 # screen  - (optional) daemonize WUDS
-sudo apt-get install iw python-pcapy sqlite3 screen
+sudo apt install git iw python-pcapy sqlite3 screen
 # lauch a screen session
 screen
 # install WUDS
-git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/wuds.git
+git clone https://github.com/belldavidr/WUDS.git
 cd wuds
 # edit the config file
 vim config.py
