@@ -6,6 +6,8 @@ This is my take on Tim Tomes' original WUDS project, which you can read more abo
 [BitBucket](https://bitbucket.org/LaNMaSteR53/wuds)
 
 Tim is no longer actively updating, so I have ported the project here and made a few changes:   
-1 - the original mac vendor lookup API is gone, so I have moved to a new provider
-2 - moved from sqlite3 to MySQL on Amazon RDS
-3 - added slack alerts
+1 - the original mac vendor lookup API is gone, so I have moved to a new provider   
+2 - moved from sqlite3 to MySQL on Amazon RDS   
+3 - added slack alerts   
+
+More to come!
