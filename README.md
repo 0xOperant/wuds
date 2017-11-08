@@ -20,7 +20,7 @@ More to come:
 # pycapy  - access full 802.11 frames
 # sqlite3 - interact with the database
 # screen  - (optional) daemonize WUDS
-sudo apt install git iw python-pcapy sqlite3 screen
+sudo apt install git iw python-pcapy sqlite3 screen vim
 # install WUDS
 git clone https://github.com/belldavidr/WUDS.git
 cd wuds
