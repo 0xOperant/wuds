@@ -10,4 +10,5 @@ Tim is no longer actively updating, so I have ported the project here and made a
 2 - moved from sqlite3 to MySQL on Amazon RDS   
 3 - added slack alerts   
 
-More to come!
+More to come:
+* web front end for SQL queries
