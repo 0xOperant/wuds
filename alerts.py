@@ -22,7 +22,7 @@ import urllib
 import urllib2
 
 def alert_pushover(**kwargs):
-    msg = 'A foreign device has been detected nearby: (%s, %s, %s, %sdbm, %s)  nearby.' % (kwargs['bssid'], kwargs['oui'], kwargs['rssi'], kwargs['essid'])
+    msg = 'A foreign device has been detected nearby: (%s, %s, %s, %sdbm, %s)' % (kwargs['bssid'], kwargs['oui'], kwargs['rssi'], kwargs['essid'])
     url = 'https://api.pushover.net/1/messages.json'
     payload = {'token': PUSHOVER_API_KEY, 'user': PUSHOVER_USER_KEY, 'message': msg}
     payload = urllib.urlencode(payload)
