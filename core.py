@@ -2,8 +2,7 @@ from contextlib import closing
 from datetime import datetime, timedelta
 import json
 import pcapy
-import pymysql
-import pymysql.cursors
+import sqlite3
 import struct
 import sys
 import traceback
@@ -137,14 +136,11 @@ def packet_handler(pkt):
 
 # connect to the wuds database
 # wuds runs as root and should be able to write anywhere
-conn = pymysql.connect(host=HOST,
-                     user=USER,
-                     ssl=CA,
-                     password=PASSWORD,
-                     db=DB,
-                     cursorclass=pymysql.cursors.DictCursor)
-
-try:
+with sqlite3.connect(LOG_FILE) as conn:
+    # Use Write-Ahead-Logging mode, speeds performance some, eliminates read-locks,
+    # and provides the benefits w/o going to mysql or something larger quite yet ;)
+    #   - des - jul25 2016
+    conn.execute("PRAGMA journal_mode=WAL")
     with closing(conn.cursor()) as cur:
         # build the database schema if necessary
         cur.execute('CREATE TABLE IF NOT EXISTS probes (dtg TEXT, mac TEXT, rssi INT, ssid TEXT, oui TEXT)')
@@ -167,5 +163,3 @@ try:
                 if DEBUG: print traceback.format_exec()
                 continue
         log_message(0, 'WUDS stopped.')
-finally:
-    conn.close()
