@@ -17,15 +17,13 @@ More to come:
 ```bash
 # install prerequisites
 # iw      - control the wi-fi interface
-# pymysql - interact with the database
+# sqlite3 - interact with the database
 # pycapy  - access full 802.11 frames
 # screen  - (optional) daemonize WUDS
-sudo apt install git iw python-pcapy python3-pymysql screen vim
+sudo apt install git iw python-pcapy sqlite3 screen vim git
 # install WUDS
 git clone https://github.com/belldavidr/WUDS.git
 cd wuds
-# download RDS SSL Certificate bundle
-wget https://s3.amazonaws.com/rds-downloads/rds-ca-2015-root.pem
 # edit the config file
 vim config.py
 # lauch a screen session
