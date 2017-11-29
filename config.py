@@ -82,3 +82,10 @@ PUSHOVER_USER_KEY = ''
 
 # (STR) Slack Webhook URL
 WEBHOOK_URL = ''
+
+#=======================
+# SLASH COMMAND CONFIG
+#=======================
+# (STR) Slack Slash Command Verification Token
+SLACK_TOKEN = ''
+USER_ID = ''

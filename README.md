@@ -39,4 +39,4 @@ screen
 * config.py - configuration file
 * core.py - core library
 * run.sh - startup script
-* README.md - this file
+* README.md - this file   
