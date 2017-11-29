@@ -37,10 +37,14 @@ screen -S run
 # execute the included run script
 sudo ./run.sh
 # Ctrl+A, D detaches from the screen session
+
+# Optional: flask, slack.py, and ngrok are only required for slash commands from slack
 screen -S flask
+# launch flask to respond to slash commands from slack
 sudo python slack.py
 # Ctrl+A, D detaches from the screen session
 screen -S ngrok
+# launch ngrok to enable tunneling to localhost
 ./ngrok http 5000
 # Ctrl+A, D detaches from the screen session
 # screen -x <name> re-attaches to specified screen sessions
