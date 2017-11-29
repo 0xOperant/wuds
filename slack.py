@@ -44,7 +44,7 @@ def wuds_mac():
                          yield ','.join(row) + ' (was probed by ' + text + ')\n'
                  return Response(generate()), 200
             else:
-                return "sorry, MAC: " + text + " is not in the database.", 200
+                return "sorry, MAC: " + text + " is not in the database or hasn't probed any networks.", 200
         else:
             return "Please enter a MAC address.", 200
     else:
