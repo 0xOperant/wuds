@@ -13,6 +13,10 @@ import ssl
 sys.dont_write_bytecode = True
 from config import *
 from alerts import *
+from slack import *
+
+#launch flask to receive slash commands from slack
+subprocess.call("sudo python slack.py", shell=True)
 
 # define constants
 MAC_LIST = [x.lower() for x in MAC_LIST]
