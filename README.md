@@ -21,7 +21,7 @@ The second is a couple of slash commands: `/wuds_ssid [ssid]` and `/wuds_mac [ma
 
 `wuds_mac` queries for each SSID the given `[mac]` has been observed probing for. Results are displayed along with the queried mac, as well, for clarity.
 
-Go to [this page](https://api.slack.com/apps) (while logged in) to set up your slash command app. Slash Command documentation is [here](https://api.slack.com/slash-commands), and there are a LOT of tutorials out there.
+Go to [this page](https://api.slack.com/apps) (while logged in) to set up your slash command app. Slash command documentation is [here](https://api.slack.com/slash-commands), and there are a LOT of tutorials out there.
 
 Once your app is set up, you will need to input your "Verification Token" at the bottom of config.py: `SLACK_TOKEN = 'verification token'`. You will also need your `USER_ID` from Slack, which is also entered at the bottom of config.py: `USER_ID = 'your user_id'`. These tokens will ensure that only *legitimate requests from you* will be processed by flask. You can use the official [slack API tester](https://api.slack.com/methods/users.list/test) to obtain your `USER_ID`.
 
