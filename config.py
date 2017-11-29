@@ -4,7 +4,7 @@
 #=========
 
 # (STR) WLAN interface in monitor mode
-IFACE = ''
+IFACE = 'wlan0'
 
 # (LIST) List of MAC addresses expected within the premises
 MAC_LIST = [
@@ -28,12 +28,8 @@ RSSI_THRESHOLD = -50
 # (INT) Number of seconds between alerts for persistent foreign probes
 ALERT_THRESHOLD = 120
 
-# (STR) RDS MySQL database
-HOST = 'host' 
-USER = 'user' 
-CA = {'ca':'/home/pi/WUDS/rds-ca-2015-root.pem'}
-PASSWORD = 'password'
-DB = 'db'
+# (STR) Path to the database file
+LOG_FILE = 'log.db'
 
 # (INT) Determines which probes are stored in the database
 # 0 = all probes
@@ -41,7 +37,7 @@ DB = 'db'
 # 2 = all probes on the premises
 # 3 = all foreign probes on the premises
 # 4 = only probes that generate alerts
-LOG_LEVEL = 3
+LOG_LEVEL = 1
 
 # (BOOL) Enable/Disable stdout debugging messages
 DEBUG = True
@@ -51,8 +47,9 @@ DEBUG = True
 #========
 
 # (BOOL) Enable/Disable alert modules
-ALERT_SMS = True
-ALERT_PUSHOVER = True
+ALERT_SMS = False
+ALERT_PUSHOVER = False
+ALERT_SLACK = True
 
 #==================
 # ALERT_SMS CONFIG
@@ -86,6 +83,7 @@ WEBHOOK_URL = ''
 #=======================
 # SLASH COMMAND CONFIG
 #=======================
+
 # (STR) Slack Slash Command Verification Token
 SLACK_TOKEN = ''
 USER_ID = ''
