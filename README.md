@@ -19,7 +19,7 @@ The second is a couple of slash commands: `/wuds_ssid [ssid]` and `/wuds_mac [ma
 
 `wuds_ssid` queries for distinct mac addresses that have probed for ``[ssid]``. The results are also displayed with associated OUI's and what SSID was queried for. This helps the user better understand the results after several queries.
 
-`wuds_mac` queries for each SSID the given ``[mac]`` had been observed probing for. Results are displayed along with the queried mac, as well, for clarity.
+`wuds_mac` queries for each SSID the given `[mac]` has been observed probing for. Results are displayed along with the queried mac, as well, for clarity.
 
 Go to [this page](https://api.slack.com/apps) (while logged in) to set up your slash command app. Slash Command documentation is [here](https://api.slack.com/slash-commands), and there are a LOT of tutorials out there.
 
