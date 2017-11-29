@@ -26,11 +26,11 @@ def wuds_ssid():
         else:
             return "Please enter an SSID.", 200
     else:
-        return "Unauthorized. You're not @dave.)", 401
+        return "Unauthorized.", 401
 
 @app.route('/wuds_mac', methods=['POST'])
 def wuds_mac():
-    if request.form.get('token') == "SLACK_TOKEN" and request.form.get('user_id') == "USER_ID":
+    if request.form.get('token') == SLACK_TOKEN and request.form.get('user_id') == USER_ID:
         text = request.form.get('text')
         if text:
             con = lite.connect(LOG_FILE)
@@ -44,11 +44,11 @@ def wuds_mac():
                          yield ','.join(row) + ' (was probed by ' + text + ')\n'
                  return Response(generate()), 200
             else:
-                return "sorry, MAC: " + text + " is not in the database.", 200
+                return "sorry, MAC: " + text + " hasn't probed any networks.", 200
         else:
             return "Please enter a MAC address.", 200
     else:
-        return "Unauthorized.)", 401
+        return "Unauthorized.", 401
 
 
 if __name__ == '__main__':
