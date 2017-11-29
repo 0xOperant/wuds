@@ -6,11 +6,8 @@ From Tim: "WUDS is a proximity detection system that uses Wi-Fi probe requests, 
 
 Tim is no longer actively updating, so I have ported the project here and made a few changes:   
 - the original mac vendor lookup API is gone, so I have moved to a new provider     
-- added slack alerts   
-
-More to come:   
-- move from sqlite3 to MySQL on Amazon RDS 
-- web front end for SQL queries
+- added slack alerts
+- added slash command integration for slack
 
 ## Setup
 
@@ -20,17 +17,33 @@ More to come:
 # sqlite3 - interact with the database
 # pycapy  - access full 802.11 frames
 # screen  - (optional) daemonize WUDS
-sudo apt install git iw python-pcapy sqlite3 screen vim
+# python-pip - (optional) python package management
+# flask - (optional) host Slack slash commands
+# slackclient - (optional) interface with Slack API
+# ngrok - (optional) allow tunneling to localhost
+sudo apt install git iw python-pcapy sqlite3 screen vim python-pip
+sudo pip install flask
+sudo pip install slackclient
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+unzip ngrok-stable-linux-arm.zip
+rm ngrok-stable-linux-arm.zip
 # install WUDS
 git clone https://github.com/belldavidr/WUDS.git
 cd wuds
 # edit the config file
 vim config.py
 # lauch a screen session
-screen
+screen -S run
 # execute the included run script
-./run.sh
+sudo ./run.sh
 # Ctrl+A, D detaches from the screen session
+screen -S flask
+sudo python slack.py
+# Ctrl+A, D detaches from the screen session
+screen -S ngrok
+./ngrok http 5000
+# Ctrl+A, D detaches from the screen session
+# screen -x <name> re-attaches to specified screen sessions
 ```
 
 ## File Summary
@@ -39,4 +52,5 @@ screen
 * config.py - configuration file
 * core.py - core library
 * run.sh - startup script
-* README.md - this file   
+* README.md - this file
+* slack.py - flask web server to host slack slash commands  
