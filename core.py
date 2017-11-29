@@ -8,6 +8,7 @@ import sys
 import traceback
 import urllib2
 import ssl
+import subprocess
 
 # import wuds modules
 sys.dont_write_bytecode = True
