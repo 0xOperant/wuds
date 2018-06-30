@@ -32,3 +32,16 @@ def alert_slack(**kwargs):
     msg = '{"text": "A foreign device has been detected nearby:\n(%s , %s , %sdbm, %s)"}' % (kwargs['bssid'], kwargs['oui'], kwargs['rssi'], kwargs['essid'])
     url = WEBHOOK_URL
     resp = urllib2.urlopen(url, data=msg)
+    
+def alert_hubot(**kwargs):
+    hubot_alert = ':wifi: *WUDS Alert:* A foreign device has been detected nearby:\n(%s, %s, %sdbm, %s)' % (kwargs['bssid'], kwargs['oui'], kwargs['rssi'], kwargs['essid'])
+    hubot_msg = {'token':HUBOT_TOKEN,'text':hubot_alert}
+    hubot_url = HUBOT_URL
+    hubot_payload = urllib.urlencode(hubot_msg)
+    hubot_resp = urllib2.urlopen(hubot_url, data=hubot_payload)
+
+def status_alert_hubot(hubot_status):
+    hubot_msg = {'token':HUBOT_TOKEN,'text':hubot_status}
+    hubot_url = HUBOT_URL
+    hubot_payload = urllib.urlencode(hubot_msg)
+    hubot_resp = urllib2.urlopen(hubot_url, data=hubot_payload)

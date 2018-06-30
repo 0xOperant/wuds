@@ -20,7 +20,7 @@ from slack import *
 #subprocess.call("sudo python slack.py", shell=True)
 
 # define constants
-MAC_LIST = [x.lower() for x in MAC_LIST]
+#MAC_LIST = [x.lower() for x in MAC_LIST]
 LOG_TYPES = {
     0: 'messages',
     1: 'probes',
@@ -116,8 +116,12 @@ def packet_handler(pkt):
         data = (bssid, rssi, essid)
         # check whitelist for probing mac address
         foreign = False
-        if bssid not in MAC_LIST:
+        cur.execute("SELECT count (*) FROM whitelist WHERE lower(mac) = ?", (bssid,))
+        known_mac = cur.fetchone()[0]
+        if known_mac==0:
             foreign = True
+        #if bssid not in MAC_LIST:
+        #    foreign = True
         # handle local admin mac addresses
         if is_admin_oui(bssid) and ADMIN_IGNORE:
             foreign = False
@@ -150,7 +154,10 @@ with sqlite3.connect(LOG_FILE) as conn:
         # build the database schema if necessary
         cur.execute('CREATE TABLE IF NOT EXISTS probes (dtg TEXT, mac TEXT, rssi INT, ssid TEXT, oui TEXT)')
         cur.execute('CREATE TABLE IF NOT EXISTS messages (dtg TEXT, lvl TEXT, msg TEXT)')
+        cur.execute('CREATE TABLE IF NOT EXISTS whitelist (mac TEXT, oui TEXT, comment TEXT)')
         conn.commit()
+        hubot_status = ':wifi::satellite_antenna: *WUDS started*'
+        status_alert_hubot(hubot_status)
         log_message(0, 'WUDS started.')
         # set up the sniffer
         cap = pcapy.open_live(IFACE, 1514, 1, 0)
@@ -165,6 +172,10 @@ with sqlite3.connect(LOG_FILE) as conn:
             except KeyboardInterrupt:
                 break
             except:
-                if DEBUG: print traceback.format_exec()
+                hubot_status = ':wifi::information_source: *WUDS restarting*'
+                status_alert_hubot(hubot_status)
+                if DEBUG: print traceback.format_exc()
                 continue
+        hubot_status = ':wifi::rotating_light: *WUDS Crashed*'
+        status_alert_hubot(hubot_status)
         log_message(0, 'WUDS stopped.')

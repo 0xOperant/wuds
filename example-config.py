@@ -4,13 +4,7 @@
 #=========
 
 # (STR) WLAN interface in monitor mode
-IFACE = 'wlan0'
-
-# (LIST) List of MAC addresses expected within the premises
-MAC_LIST = [
-    'xx:xx:xx:xx:xx:xx',
-    'xx:xx:xx:xx:xx:xx',
-    ]
+IFACE = 'wlan1'
 
 # (STR) Vendor name to report for probes from Local Admin MAC addresses
 ADMIN_OUI = 'Admin OUI'
@@ -23,13 +17,13 @@ ADMIN_OUI = 'Admin OUI'
 ADMIN_IGNORE = False
 
 # (INT) RSSI threshold for triggering alerts
-RSSI_THRESHOLD = -50
+RSSI_THRESHOLD = -35
 
 # (INT) Number of seconds between alerts for persistent foreign probes
 ALERT_THRESHOLD = 120
 
 # (STR) Path to the database file
-LOG_FILE = 'log.db'
+LOG_FILE = '/media/usb/log.db'
 
 # (INT) Determines which probes are stored in the database
 # 0 = all probes
@@ -49,7 +43,8 @@ DEBUG = True
 # (BOOL) Enable/Disable alert modules
 ALERT_SMS = False
 ALERT_PUSHOVER = False
-ALERT_SLACK = True
+ALERT_SLACK = False
+ALERT_HUBOT = True
 
 #==================
 # ALERT_SMS CONFIG
@@ -80,9 +75,9 @@ PUSHOVER_USER_KEY = ''
 # (STR) Slack Webhook URL
 WEBHOOK_URL = ''
 
-#=======================
-# SLASH COMMAND CONFIG
-#=======================
+# (STR) Hubot Webhook URL
+HUBOT_URL = ''
+HUBOT_TOKEN = ''
 
 # (STR) Slack Slash Command Verification Token
 SLACK_TOKEN = ''
