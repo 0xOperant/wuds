@@ -6,7 +6,7 @@ import sqlite3
 import struct
 import sys
 import traceback
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import ssl
 import subprocess
 
@@ -20,7 +20,7 @@ from slack import *
 #subprocess.call("sudo python slack.py", shell=True)
 
 # define constants
-MAC_LIST = [x.lower() for x in MAC_LIST]
+#MAC_LIST = [x.lower() for x in MAC_LIST]
 LOG_TYPES = {
     0: 'messages',
     1: 'probes',
@@ -33,9 +33,9 @@ MESSAGE_LEVELS = {
 
 def to_unicode(obj, encoding='utf-8'):
     # checks if obj is a unicode string and converts if not
-    if isinstance(obj, basestring):
-        if not isinstance(obj, unicode):
-            obj = unicode(obj, encoding)
+    if isinstance(obj, str):
+        if not isinstance(obj, str):
+            obj = str(obj, encoding)
     return obj
 
 def log(log_type, values):
@@ -68,7 +68,7 @@ def resolve_oui(mac):
         # retrieve mac vendor from oui lookup api
         else:
             try:
-                resp = urllib2.urlopen('http://api.macvendors.com/%s' % mac)
+                resp = urllib.request.urlopen('http://api.macvendors.com/%s' % mac)
                 if resp.code == 204:
                     ouis[mac] = 'Unknown'
                 elif resp.code == 200:
@@ -94,7 +94,7 @@ def call_alerts(**kwargs):
                     func(**kwargs)
                     log_message(2, '%s alert triggered. [%s]' % (var[6:], kwargs['bssid']))
                 except:
-                    if DEBUG: print traceback.format_exc()
+                    if DEBUG: print(traceback.format_exc())
                     log_message(1, '%s alert failed. [%s]' % (var[6:], kwargs['bssid']))
 
 def packet_handler(pkt):
@@ -107,7 +107,7 @@ def packet_handler(pkt):
         frame = pkt[rtlen:]
         # parse bssid
         bssid = frame[10:16].encode('hex')
-        bssid = ':'.join([bssid[x:x+2] for x in xrange(0, len(bssid), 2)])
+        bssid = ':'.join([bssid[x:x+2] for x in range(0, len(bssid), 2)])
         # parse rssi
         rssi = struct.unpack("b",rtap[-4:-3])[0]
         # parse essid
@@ -116,8 +116,12 @@ def packet_handler(pkt):
         data = (bssid, rssi, essid)
         # check whitelist for probing mac address
         foreign = False
-        if bssid not in MAC_LIST:
+        cur.execute("SELECT count (*) FROM whitelist WHERE lower(mac) = ?", (bssid,))
+        known_mac = cur.fetchone()[0]
+        if known_mac==0:
             foreign = True
+        #if bssid not in MAC_LIST:
+        #    foreign = True
         # handle local admin mac addresses
         if is_admin_oui(bssid) and ADMIN_IGNORE:
             foreign = False
@@ -150,7 +154,11 @@ with sqlite3.connect(LOG_FILE) as conn:
         # build the database schema if necessary
         cur.execute('CREATE TABLE IF NOT EXISTS probes (dtg TEXT, mac TEXT, rssi INT, ssid TEXT, oui TEXT)')
         cur.execute('CREATE TABLE IF NOT EXISTS messages (dtg TEXT, lvl TEXT, msg TEXT)')
+        cur.execute('CREATE TABLE IF NOT EXISTS whitelist (mac TEXT, oui TEXT, comment TEXT)')
         conn.commit()
+        #optional hubot status alert (can be changed to another alert defined in config.py)
+        hubot_status = ':wifi::satellite_antenna: *WUDS started*'
+        status_alert_hubot(hubot_status)
         log_message(0, 'WUDS started.')
         # set up the sniffer
         cap = pcapy.open_live(IFACE, 1514, 1, 0)
@@ -159,12 +167,18 @@ with sqlite3.connect(LOG_FILE) as conn:
         # start the sniffer
         while True:
             try:
-                (header, pkt) = cap.next()
+                (header, pkt) = next(cap)
                 if cap.datalink() == 0x7F:
                     packet_handler(pkt)
             except KeyboardInterrupt:
                 break
             except:
-                if DEBUG: print traceback.format_exec()
+                #optional hubot status alerts (can be changed to another alert defined in config.py)
+                hubot_status = ':wifi::information_source: *WUDS restarting*'
+                status_alert_hubot(hubot_status)
+                if DEBUG: print(traceback.format_exec())
                 continue
+        #optional hubot status alerts (can be changed to another alert defined in config.py)
+        hubot_status = ':wifiL:rotating_light: *WUDS Crashed!*'
+        status_alert_hubot(hubot_status)
         log_message(0, 'WUDS stopped.')

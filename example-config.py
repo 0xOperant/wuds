@@ -65,20 +65,20 @@ SMS_EMAIL = ''
 #=======================
 
 # (STR) API and User keys from pushover.net
-PUSHOVER_API_KEY = 'aNSFLGWFDUJF9hrxqYKBo39yUjLueg'
-PUSHOVER_USER_KEY = 'ujprYCDnwMgtN6omnX4MDXPVfFcHsW'
+PUSHOVER_API_KEY = ''
+PUSHOVER_USER_KEY = ''
 
 #=======================
 # ALERT_SLACK CONFIG
 #=======================
 
 # (STR) Slack Webhook URL
-WEBHOOK_URL = 'https://hooks.slack.com/services/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'
+WEBHOOK_URL = ''
 
 # (STR) Hubot Webhook URL
-HUBOT_URL = 'https://jarvis-slackbot-operant.herokuapp.com/hubot/chatsecrets/daves_bots'
-HUBOT_TOKEN = 'p6xmaFufNCjdXRKL2Jwo3nJRYYx2JD'
+HUBOT_URL = ''
+HUBOT_TOKEN = ''
 
 # (STR) Slack Slash Command Verification Token
-SLACK_TOKEN = 'xIYzYNVRofaQWTEYpHIpMqQ9'
-USER_ID = 'U0LK8QPTN'
+SLACK_TOKEN = ''
+USER_ID = ''
