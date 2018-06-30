@@ -4,13 +4,14 @@ This is my take on Tim Tomes' original WUDS project, from the original repo: [Bi
 
 From Tim: "WUDS is a proximity detection system that uses Wi-Fi probe requests, signal strength, and a white list of MAC addresses to create a detection barrier and identify the presence of foreign devices within a protected zone. Designed with the Raspberry Pi in mind, WUDS can be installed and configured on any system with Python 2.x and a wireless card capable of Monitor mode. See [http://www.lanmaster53.com/2014/10/wifi-user-detection-system/](http://www.lanmaster53.com/2014/10/wifi-user-detection-system/) for more information."
 
-Tim is no longer actively updating, so I have ported the project here and made a few changes:   
-- the original mac vendor lookup API is gone, so I have moved to a new provider     
-- added slack alerts   
+Tim is no longer actively updating, so I have ported the project here and made a few changes:
 
-More to come:   
-- move from sqlite3 to MySQL on Amazon RDS 
-- web front end for SQL queries
+- the original mac vendor lookup API is gone, so I have moved to a new provider     
+- added slack alerts
+- added Hubot (chatbot) alerts
+- moved the whitelist to the database so it can be dynamically updated without restarting the process
+
+
 
 ## Setup
 
