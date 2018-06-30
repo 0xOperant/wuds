@@ -35,8 +35,9 @@ screen
 
 ## File Summary
 
+* slack.py - runs a flask listener to handle slash command from slack
+* example-config.py - example configuration file (update values and rename to config.py)
 * alerts.py - custom alert modules
-* config.py - configuration file
 * core.py - core library
 * run.sh - startup script
-* README.md - this file   
+* README.md - this file
