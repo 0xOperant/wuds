@@ -21,7 +21,8 @@ Tim is no longer actively updating, so I have ported the project here and made a
 # sqlite3 - interact with the database
 # pycapy  - access full 802.11 frames
 # screen  - (optional) daemonize WUDS
-sudo apt install git iw python-pcapy sqlite3 screen vim
+sudo apt install git iw python-pcapy python-pip sqlite3 screen vim
+pip install slackclient
 # install WUDS
 git clone https://github.com/belldavidr/WUDS.git
 cd wuds
